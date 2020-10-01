@@ -6,8 +6,11 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src -d dist",
-    "prepack": "npm run build",
+    "prepack": "yarn build",
     "test": "mocha --require @babel/register --recursive"
+  },
+  "engines": {
+    "yarn": "^1.19.1"
   },
   "browser": {
     "fs": false

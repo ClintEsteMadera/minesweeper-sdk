@@ -31,13 +31,13 @@ To publish the library as a [npm](https://www.npmjs.com/), please follow the pro
 Then install it via:
 
 ```shell
-npm install minesweeper-sdk --save
+yarn add minesweeper-sdk
 ```
 
 Finally, you need to build the module:
 
 ```shell
-npm run build
+yarn build
 ```
 
 ##### Local development
@@ -45,25 +45,25 @@ npm run build
 To use the library locally without publishing to a remote npm registry, first install the dependencies by changing into the directory containing `package.json` (and this README). Let's call this `JAVASCRIPT_CLIENT_DIR`. Then run:
 
 ```shell
-npm install
+yarn install
 ```
 
 Next, [link](https://docs.npmjs.com/cli/link) it globally in npm with the following, also from `JAVASCRIPT_CLIENT_DIR`:
 
 ```shell
-npm link
+yarn link
 ```
 
 To use the link you just defined in your project, switch to the directory you want to use your minesweeper-sdk from, and run:
 
 ```shell
-npm link /path/to/<JAVASCRIPT_CLIENT_DIR>
+yarn link /path/to/<JAVASCRIPT_CLIENT_DIR>
 ```
 
 Finally, you need to build the module:
 
 ```shell
-npm run build
+yarn build
 ```
 
 #### git
@@ -72,13 +72,13 @@ If the library is hosted at a git repository, e.g.https://github.com/GIT_USER_ID
 then install it via:
 
 ```shell
-    npm install GIT_USER_ID/GIT_REPO_ID --save
+    yarn add GIT_USER_ID/GIT_REPO_ID
 ```
 
 ### For browser
 
-The library also works in the browser environment via npm and [browserify](http://browserify.org/). After following
-the above steps with Node.js and installing browserify with `npm install -g browserify`,
+The library also works in the browser environment via yarn and [browserify](http://browserify.org/). After following
+the above steps with Node.js and installing browserify with `yarn add -g browserify`,
 perform the following (assuming *main.js* is your entry file):
 
 ```shell
@@ -110,18 +110,22 @@ module: {
 Please follow the [installation](#installation) instruction and execute the following JS code:
 
 ```javascript
-var Minesweeper2020 = require('minesweeper-sdk');
+import { GamesApi } from 'minesweeper-sdk';
 
+const api = new GamesApi();
 
-var api = new Minesweeper2020.GamesApi()
-var gameCreationData = new Minesweeper2020.GameCreationData(); // {GameCreationData} 
-api.createGame(gameCreationData).then(function(data) {
+const gameCreationData = {
+  username: "someone@mail.com",
+  rowsCount: 2,
+  columnsCount: 2,
+  minesCount: 1
+};
+
+api.createGame(gameCreationData).then(data => {
   console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
+}).catch(error => {
   console.error(error);
 });
-
-
 ```
 
 ## Documentation for API Endpoints
